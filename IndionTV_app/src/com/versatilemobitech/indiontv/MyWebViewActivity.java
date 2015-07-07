@@ -1,5 +1,7 @@
 package com.versatilemobitech.indiontv;
-import android.app.Activity;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -26,6 +28,10 @@ public class MyWebViewActivity extends BaseActivity {
 
         super.onCreate(savedInstanceState);
         setContentView( R.layout.my_web_view);
+        
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+		AdRequest adRequest = new AdRequest.Builder().build();
+		mAdView.loadAd(adRequest);
 
         this.webview = (WebView)findViewById( R.id.webview);
 
@@ -36,6 +42,8 @@ public class MyWebViewActivity extends BaseActivity {
         final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
 
         progressBar = ProgressDialog.show(MyWebViewActivity.this, "Indion TV", "Loading...");
+        
+        progressBar.setCancelable(true);
 
         webview.setWebViewClient(new WebViewClient() {
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -64,6 +72,6 @@ public class MyWebViewActivity extends BaseActivity {
                 alertDialog.show();
             }
         });
-        webview.loadUrl("http://indiontv.com/");
+          webview.loadUrl("http://indiontv.com/");
     }
 }

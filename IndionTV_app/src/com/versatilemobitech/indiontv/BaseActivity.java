@@ -58,7 +58,7 @@ public class BaseActivity extends Activity{
 		}
 		
 		// Getting name, email from intent
-		Intent i = getIntent();
+		//Intent i = getIntent();
 		
 		
 		String possibleEmail="IndionTV :"+Build.MANUFACTURER;
@@ -79,6 +79,7 @@ public class BaseActivity extends Activity{
 		name =email= possibleEmail;
 		//email = i.getStringExtra("email");		
 		
+		try{
 		// Make sure the device has the proper dependencies.
 		GCMRegistrar.checkDevice(this);
 
@@ -126,6 +127,10 @@ public class BaseActivity extends Activity{
 				};
 				mRegisterTask.execute(null, null, null);
 			}
+		}
+		}catch(Exception e)
+		{
+			e.printStackTrace();
 		}
 	}		
 

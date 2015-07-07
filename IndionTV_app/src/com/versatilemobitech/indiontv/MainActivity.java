@@ -29,8 +29,8 @@ public class MainActivity extends Activity {
 	// Connection detector
 	ConnectionDetector cd;
 	
-	public static String name;
-	public static String email;
+	//public static String name;
+	//public static String email;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -52,8 +52,8 @@ public class MainActivity extends Activity {
 		// Getting name, email from intent
 		Intent i = getIntent();
 		
-		name = i.getStringExtra("name");
-		email = i.getStringExtra("email");		
+		//name = i.getStringExtra("name");
+		//email = i.getStringExtra("email");		
 		
 		// Make sure the device has the proper dependencies.
 		GCMRegistrar.checkDevice(this);
@@ -90,7 +90,7 @@ public class MainActivity extends Activity {
 					protected Void doInBackground(Void... params) {
 						// Register on our server
 						// On server creates a new user
-						ServerUtilities.register(context, name, email, regId);
+						//ServerUtilities.register(context, name, email, regId);
 						return null;
 					}
 
