@@ -20,6 +20,7 @@
     <string name="options_unregister">Unregister</string>
     <string name="options_clear">Clear</string>
     <string name="options_exit">Exit</string>
-     <string name="publisher_id">ca-app-pub-9440947005851636/7518790701</string>
+    <!-- DummyTG  -->
+     <string name="publisher_id">ca-app-pub-5674027387172985/8678911353</string>
 
 </resources>
