@@ -103,7 +103,7 @@ public class BaseActivity extends Activity{
 			// Device is already registered on GCM
 			if (GCMRegistrar.isRegisteredOnServer(this)) {
 				// Skips registration.				
-				Toast.makeText(getApplicationContext(), "Already registered with GCM", Toast.LENGTH_LONG).show();
+				//Toast.makeText(getApplicationContext(), "Already registered with GCM", Toast.LENGTH_LONG).show();
 			} else {
 				// Try to register again, but not in the UI thread.
 				// It's also necessary to cancel the thread onDestroy(),
@@ -140,6 +140,7 @@ public class BaseActivity extends Activity{
 	private final BroadcastReceiver mHandleMessageReceiver = new BroadcastReceiver() {
 		@Override
 		public void onReceive(Context context, Intent intent) {
+			try{
 			String newMessage = intent.getExtras().getString(EXTRA_MESSAGE);
 			// Waking up mobile if it is sleeping
 			WakeLocker.acquire(getApplicationContext());
@@ -156,6 +157,10 @@ public class BaseActivity extends Activity{
 			
 			// Releasing wake lock
 			WakeLocker.release();
+			}
+			catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	};
 	
