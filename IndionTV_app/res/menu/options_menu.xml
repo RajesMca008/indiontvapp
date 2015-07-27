@@ -3,8 +3,5 @@
         android:id="@+id/options_clear"
         android:title="@string/options_clear">
     </item>
-    <item
-        android:id="@+id/options_exit"
-        android:title="@string/options_exit">
-    </item>
+    
 </menu>

@@ -7,7 +7,6 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.text.Html;
 import android.util.Log;
 
 import com.google.android.gcm.GCMBaseIntentService;
@@ -37,7 +36,7 @@ public class GCMIntentService extends GCMBaseIntentService {
     @Override
     protected void onUnregistered(Context context, String registrationId) {
         Log.i(TAG, "Device unregistered");
-        displayMessage(context, getString(R.string.gcm_unregistered));
+       // displayMessage(context, getString(R.string.gcm_unregistered));
         ServerUtilities.unregister(context, registrationId);
     }
 
@@ -67,10 +66,10 @@ public class GCMIntentService extends GCMBaseIntentService {
     @Override
     protected void onDeletedMessages(Context context, int total) {
         Log.i(TAG, "Received deleted messages notification");
-        String message = getString(R.string.gcm_deleted, total);
-        displayMessage(context, message);
+       // String message = getString(R.string.gcm_deleted, total);
+        //displayMessage(context, message);
         // notifies user
-        generateNotification(context, message);
+        //generateNotification(context, message);
     }
 
     /**
@@ -79,15 +78,15 @@ public class GCMIntentService extends GCMBaseIntentService {
     @Override
     public void onError(Context context, String errorId) {
         Log.i(TAG, "Received error: " + errorId);
-        displayMessage(context, getString(R.string.gcm_error, errorId));
+        //displayMessage(context, getString(R.string.gcm_error, errorId));
     }
 
     @Override
     protected boolean onRecoverableError(Context context, String errorId) {
         // log message
         Log.i(TAG, "Received recoverable error: " + errorId);
-        displayMessage(context, getString(R.string.gcm_recoverable_error,
-                errorId));
+       /* displayMessage(context, getString(R.string.gcm_recoverable_error,
+                errorId));*/
         return super.onRecoverableError(context, errorId);
     }
 
@@ -107,6 +106,8 @@ public class GCMIntentService extends GCMBaseIntentService {
         // set intent so it does not start a new activity
         notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                 Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        
+        notificationIntent.putExtra("MSG", message);
         PendingIntent intent =
                 PendingIntent.getActivity(context, 0, notificationIntent, 0);
         notification.setLatestEventInfo(context, title, message, intent);

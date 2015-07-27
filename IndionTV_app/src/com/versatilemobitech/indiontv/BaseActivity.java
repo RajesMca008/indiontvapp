@@ -18,7 +18,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
-import android.widget.Toast;
 
 import com.google.android.gcm.GCMRegistrar;
 
@@ -153,7 +152,6 @@ public class BaseActivity extends Activity{
 			
 			// Showing received message
 			//lblMessage.append(newMessage + "\n");			
-			Toast.makeText(getApplicationContext(), "New Message: " + newMessage, Toast.LENGTH_LONG).show();
 			
 			// Releasing wake lock
 			WakeLocker.release();

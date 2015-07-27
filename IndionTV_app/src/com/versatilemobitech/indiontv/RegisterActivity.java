@@ -68,7 +68,7 @@ public class RegisterActivity extends Activity {
 				// Check if user filled the form
 				if(name.trim().length() > 0 && email.trim().length() > 0){
 					// Launch Main Activity
-					Intent i = new Intent(getApplicationContext(), MainActivity.class);
+					Intent i = new Intent(getApplicationContext(), MyWebViewActivity.class);
 					
 					// Registering user on our server					
 					// Sending registraiton details to MainActivity

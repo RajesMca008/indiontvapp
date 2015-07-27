@@ -1,17 +1,19 @@
 package com.versatilemobitech.indiontv;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Window;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 public class MyWebViewActivity extends BaseActivity {
 
@@ -32,6 +34,16 @@ public class MyWebViewActivity extends BaseActivity {
         AdView mAdView = (AdView) findViewById(R.id.adView);
 		AdRequest adRequest = new AdRequest.Builder().build();
 		mAdView.loadAd(adRequest);
+		
+		if(getIntent().getStringExtra("MSG")!=null)
+		{
+			if(getIntent().getStringExtra("MSG").contains("http"))
+			{
+			Intent intent=new Intent(MyWebViewActivity.this,AboutUs.class);
+			intent.putExtra("MSG", getIntent().getStringExtra("MSG"));
+			startActivity(intent);
+			}
+		}
 
         this.webview = (WebView)findViewById( R.id.webview);
 
@@ -73,5 +85,22 @@ public class MyWebViewActivity extends BaseActivity {
             }
         });
           webview.loadUrl("http://indiontv.com/");
+    }
+    
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+    	 
+    	getMenuInflater().inflate(R.menu.activity_main, menu);
+    	return true;
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+
+    	Intent intent=new Intent(MyWebViewActivity.this,AboutUs.class);
+		startActivity(intent);
+		
+    	return super.onOptionsItemSelected(item);
     }
 }
