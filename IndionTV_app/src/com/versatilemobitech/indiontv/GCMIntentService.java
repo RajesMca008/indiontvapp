@@ -7,6 +7,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 
 import com.google.android.gcm.GCMBaseIntentService;
@@ -107,6 +108,7 @@ public class GCMIntentService extends GCMBaseIntentService {
         notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                 Intent.FLAG_ACTIVITY_SINGLE_TOP);
         
+        notificationIntent.setData((Uri.parse("custom://"+System.currentTimeMillis())));
         notificationIntent.putExtra("MSG", message);
         PendingIntent intent =
                 PendingIntent.getActivity(context, 0, notificationIntent, 0);

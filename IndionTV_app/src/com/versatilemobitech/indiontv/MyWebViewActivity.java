@@ -32,7 +32,15 @@ public class MyWebViewActivity extends BaseActivity {
         setContentView( R.layout.my_web_view);
         
         AdView mAdView = (AdView) findViewById(R.id.adView);
-		AdRequest adRequest = new AdRequest.Builder().build();
+		AdRequest adRequest = new AdRequest.Builder() 
+		  
+				.build();
+		/*
+		 * AdRequest adRequest = new AdRequest.Builder() 
+		 .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+		 .addTestDevice("17467D0CA63D82713CB66DC010BC8FEE")
+		 ca-app-pub-3005960506890261/6190467836
+		 */
 		mAdView.loadAd(adRequest);
 		
 		if(getIntent().getStringExtra("MSG")!=null)
@@ -84,7 +92,7 @@ public class MyWebViewActivity extends BaseActivity {
                 alertDialog.show();
             }
         });
-          webview.loadUrl("http://indiontv.com/");
+         webview.loadUrl("http://indiontv.com/");
     }
     
     @Override
