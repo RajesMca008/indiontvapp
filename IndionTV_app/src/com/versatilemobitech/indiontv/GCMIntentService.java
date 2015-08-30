@@ -2,6 +2,9 @@ package com.versatilemobitech.indiontv;
 
 import static com.versatilemobitech.indiontv.CommonUtilities.SENDER_ID;
 import static com.versatilemobitech.indiontv.CommonUtilities.displayMessage;
+
+import java.util.Random;
+
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -108,11 +111,14 @@ public class GCMIntentService extends GCMBaseIntentService {
         notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                 Intent.FLAG_ACTIVITY_SINGLE_TOP);
         
-        notificationIntent.setData((Uri.parse("custom://"+System.currentTimeMillis())));
+        //notificationIntent.setData((Uri.parse("custom://"+System.currentTimeMillis())));
         notificationIntent.putExtra("MSG", message);
         PendingIntent intent =
                 PendingIntent.getActivity(context, 0, notificationIntent, 0);
         notification.setLatestEventInfo(context, title, message, intent);
+        
+        Random random = new Random();
+        int m = random.nextInt(9999 - 1000) + 1000;
        
         notification.flags |= Notification.FLAG_AUTO_CANCEL;
         
@@ -123,7 +129,7 @@ public class GCMIntentService extends GCMBaseIntentService {
         
         // Vibrate if vibrate is enabled
         notification.defaults |= Notification.DEFAULT_VIBRATE;
-        notificationManager.notify(0, notification);      
+        notificationManager.notify(m, notification);      
 
     }
 
